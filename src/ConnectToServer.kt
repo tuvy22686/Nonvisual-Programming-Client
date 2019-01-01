@@ -1,3 +1,5 @@
+import com.google.gson.Gson
+import model.OutputResult
 import java.io.*
 import java.net.Socket
 
@@ -23,7 +25,8 @@ class ConnectToServer(private val socket: Socket, private val data: String): Thr
             while (inputStream.available() == 0) {}
 
             val received = bufferedReader.readLine()
-            println(received)
+            val result = Gson().fromJson<OutputResult>(received, OutputResult::class.java)
+            println(result)
 
             close()
         } catch (e: Exception) {
