@@ -7,7 +7,9 @@ fun main(args: Array<String>) {
     try {
         val socket = Socket(Constant.Connection.HOST_NAME, Constant.Connection.PORT_NUMBER)
 
-        val mainData = mockData2()
+        val mainData = mockDataC2()
+
+        println(mainData)
 
         val connection = ConnectToServer(socket, mainData)
         connection.start()
@@ -16,9 +18,9 @@ fun main(args: Array<String>) {
     }
 }
 
-private fun mockData(): String {
+private fun mockDataC(): String {
     return BlockToJson.run(
-            MainBlock(0, "hello",
+            MainBlock(0, MainBlock.LanguageType.C, "hello",
                     listOf(
                             SubBlock.onIfInstance("true", listOf(
                                     SubBlock.ofPrintInstance())
@@ -38,9 +40,9 @@ private fun mockData(): String {
     //    }
 }
 
-private fun mockData2(): String {
+private fun mockDataC2(): String {
     return BlockToJson.run(
-            MainBlock(0, "hello",
+            MainBlock(0, MainBlock.LanguageType.C, "hello",
                     listOf(
                             SubBlock.ofPrintInstance()
                     )
